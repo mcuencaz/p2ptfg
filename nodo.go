@@ -7,6 +7,8 @@ import (
  "strconv"
  // "time"
  "os"
+ "crypto/sha1"
+ "encoding/hex"
 )
 
 // Longitud de las direcciones en hexadecimal (cantidad de cifras)
@@ -171,6 +173,38 @@ func main() {
 
 		}
 
+		if(inp == "addh"){
+
+			var strkey string
+			var strval0 string
+			var strval1 string
+			var strval2 string
+			fmt.Println("Introducir key")
+			fmt.Scanln(&strkey)
+			fmt.Println("Introducir valor")
+			fmt.Scanln(&strval0, &strval1, &strval2)
+
+			var valorhash = strval0+" "+strval1+" "+strval2
+			// for _,s := range strval{
+			// 	valorhash += s
+			// }
+
+			h := sha1.New()
+			h.Write([]byte(strkey))
+			res := h.Sum(nil)
+			hashfin := res[:LongDirec/2]
+
+			str := hex.EncodeToString(hashfin)
+			keyint, _ := strconv.ParseInt(str,16,64)
+			
+			// fmt.Printf("%X \n", res[:LongDirec/2])
+			// fmt.Println(str)
+			// fmt.Println(keyint)
+
+			addValorHashtable(int(keyint), valorhash, nodo.Direccion.IPdir)
+
+		}
+
 
 
 		if(inp == "get"){
@@ -178,6 +212,26 @@ func main() {
 			fmt.Println("Introducir key")
 			fmt.Scanln(&inp)
 			keyint, _ := strconv.ParseInt(inp,0,64)
+
+			getValorHashtable(int(keyint), nodo.Direccion.IPdir, nodo.Direccion.IPdir)
+
+		}
+
+		if(inp == "geth"){
+
+			fmt.Println("Introducir key")
+			fmt.Scanln(&inp)
+			// keyint, _ := strconv.ParseInt(inp,0,64)
+
+			h := sha1.New()
+			h.Write([]byte(inp))
+			res := h.Sum(nil)
+			hashfin := res[:LongDirec/2]
+
+			str := hex.EncodeToString(hashfin)
+			keyint, _ := strconv.ParseInt(str,16,64)
+			
+			// fmt.Printf("%X \n", hashfin)
 
 			getValorHashtable(int(keyint), nodo.Direccion.IPdir, nodo.Direccion.IPdir)
 

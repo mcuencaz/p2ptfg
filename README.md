@@ -34,7 +34,11 @@ l :Imprime una tabla con las direcciones GUID de los nodos vecinos.
 
 add :Se indica que se quiere añadir un par valor-clave a la tabla hash global del sistema distribuido, se solicitarán posteriormente el valor de la clave, que debe ser hexadecimal (comenzando por 0x), para después pedir el valor que se quiere asociar.
 
+addh :Al igual que add añade un valor, pero pudiendo establecer un valor de tipo string como clave.
+
 get :Orden para obtener el valor asociado a una clave de la tabla hash global, tras ejecutar get se pedirá el valor hexadecimal de la clave a buscar.
+
+geth :Al igual que get obtiene un valor, pero pudiendo establecer una clave de tipo string.
 
 remove :Orden para eliminar un par valor-clave de la tabla hash global del sistema.
 
