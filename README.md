@@ -43,3 +43,10 @@ geth :Al igual que get obtiene un valor, pero pudiendo establecer una clave de t
 remove :Orden para eliminar un par valor-clave de la tabla hash global del sistema.
 
 r :Pide al nodo que recompruebe su tabla hash interna por si alguno de sus valores debería estar asociado al vecino (No tiene utilidad práctica puesto que esta acción se hará de forma automática, este comando solo tiene utilidad para pruebas).
+
+
+
+############################################
+El archivo nodo128 contiene las mismas funciones que el anterior, pero permitiendo un mayor número en la variable de longitud de direcciones.
+
+- Para los parámetros de las funciones a ejecutar, como add y get, no se debe añadir el prefijo 0x a la hora de tratar con valores hexadecimales.
